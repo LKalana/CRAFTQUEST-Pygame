@@ -1,0 +1,73 @@
+"""
+CRAFTQUEST 2D GAME DEVELOPMENT
+
+PROGRAM: LESSON 1
+AUTHOR: LIYANAGE KALANA PERERA
+
+DESCRIPTION:
+
+THIS IS THE FIRST LESSON OF THE COURSE. IN THIS LESSON, WE COVERED:
+
+    1. IMPORTING AND INITIALIZING MODULES
+    2. CREATING A GAME WINDOW AND RENAMING IT
+    3. UNDERSTANDING HOW THE GAME LOOP WORKS
+    4. GETTING KEYBOARD INPUTS
+    5. IMPLEMENTING A GAME QUIT MECHANISM
+"""
+
+# IMPORT THE PYGAME MODULE.
+import pygame
+# INITIALIZE THE PYGAME MODULE.
+pygame.init()
+
+# SET UP THE GAME WINDOW WITH SPECIFIED WIDTH AND HEIGHT.
+win = pygame.display.set_mode((500,500))
+# ASSIGN A NAME TO THE WINDOW.
+pygame.display.set_caption("First Game")
+
+# INITIAL OBJECT POSITION.
+x = 50
+y = 50
+# OBJECT DIMENSIONS.
+width = 40
+height = 60
+# OBJECT VELOCITY (SPEED).
+vel = 5
+
+# GAME LOOP CONTROL VARIABLE. THE GAME RUNS WHEN THIS VARIABLE IS TRUE.
+run = True
+
+# START THE GAME LOOP.
+while run:
+    pygame.time.delay(100)
+
+    # CHECK FOR ALL EVENTS IN THE GAME AND LOOK FOR THE QUIT EVENT.
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+
+    # STORE THE CURRENT STATE OF ALL KEY PRESSES.
+    keys = pygame.key.get_pressed()
+    
+    # MOVE LEFT IF THE LEFT ARROW KEY IS PRESSED.
+    if keys[pygame.K_LEFT]:
+        x -= vel
+    # MOVE RIGHT IF THE RIGHT ARROW KEY IS PRESSED.
+    if keys[pygame.K_RIGHT]:
+        x += vel
+    # MOVE UP IF THE UP ARROW KEY IS PRESSED.
+    if keys[pygame.K_UP]:
+        y -= vel
+    # MOVE DOWN IF THE DOWN ARROW KEY IS PRESSED.
+    if keys[pygame.K_DOWN]:
+        y += vel
+    
+    # FILL THE SCREEN WITH A BACKGROUND COLOR (RGB).
+    win.fill((0,0,0))
+    # DRAW THE OBJECT ON THE SCREEN WITH SPECIFIED COLOR, POSITION, AND DIMENSIONS.
+    pygame.draw.rect(win, (255,0,0), (x, y, width, height))
+    # UPDATE THE DISPLAY.
+    pygame.display.update()
+
+# QUIT THE GAME WINDOW.
+pygame.quit()
